@@ -39,7 +39,8 @@
 
 ## 3. Reward curves analysis (≥ 150 words)
 
-> **Biểu đồ:** `submission/screenshots/03_dpo_reward_curves.png`
+> **Biểu đồ:**
+![DPO Reward Curves](screenshots/03-dpo-reward-curves.png)
 
 Trong suốt 1,250 bước huấn luyện DPO trên tập dữ liệu UltraFeedback (5,000 cặp), biểu đồ Reward Curve thể hiện rõ hai xu hướng tách biệt giữa `chosen_rewards` (phần thưởng cho câu trả lời tốt) và `rejected_rewards` (phần thưởng cho câu trả lời kém):
 
@@ -55,7 +56,8 @@ Thuật toán DPO với giá trị $\beta=0.1$ đã ép thành công không gian
 
 ## 4. Qualitative comparison (8 examples)
 
-> **Bảng chi tiết:** `data/eval/side_by_side.jsonl` / `submission/screenshots/04_side_by_side_table.png`
+> **Bảng chi tiết:** `data/eval/side_by_side.jsonl`
+![Side-by-Side Evaluation](screenshots/04-side-by-side-table.png)
 
 | # | Prompt category | Prompt (truncated) | SFT-only | SFT+DPO | Winner |
 |---|---|---|---|---|---|
