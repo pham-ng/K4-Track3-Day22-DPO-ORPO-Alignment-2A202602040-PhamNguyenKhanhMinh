@@ -1,6 +1,6 @@
 # Reflection — Lab 22 (DPO/ORPO Alignment)
 
-**Tên:** Phạm Nguyễn Khánh Minh  
+**Tên:** Phạm Nguyễn Khánh Minh (`pham-ng` - phamnguyenkhanhminh1502@gmail.com)  
 **Cohort:** AICB - Track 3  
 **Tier đã chạy:** BIGGPU (Vast.ai NVIDIA RTX 4090 24GB VRAM)  
 **Date:** 2026-08-25  
