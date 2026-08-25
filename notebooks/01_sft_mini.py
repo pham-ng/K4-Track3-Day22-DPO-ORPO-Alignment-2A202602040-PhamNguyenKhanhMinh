@@ -41,7 +41,7 @@ else:  # BIGGPU
     PER_DEVICE_BATCH = 2
     GRAD_ACCUM = 4
 
-SFT_DATASET = os.environ.get("SFT_DATASET", "5CD-AI/Vietnamese-alpaca-cleaned")
+SFT_DATASET = os.environ.get("SFT_DATASET", "bkai-foundation-models/vi-alpaca")
 SFT_SLICE = 1000
 NUM_EPOCHS = 1
 
@@ -112,8 +112,15 @@ print(f"Trainable params: {sum(p.numel() for p in model.parameters() if p.requir
 # %%
 from datasets import load_dataset
 
-ds = load_dataset(SFT_DATASET, split=f"train[:{SFT_SLICE}]")
-print(f"Loaded {len(ds)} rows. Columns: {ds.column_names}")
+try:
+    ds = load_dataset(SFT_DATASET, split=f"train[:{SFT_SLICE}]")
+except Exception as e:
+    fallback_dataset = "bkai-foundation-models/vi-alpaca"
+    print(f"Primary dataset '{SFT_DATASET}' failed ({e}). Falling back to '{fallback_dataset}'...")
+    SFT_DATASET = fallback_dataset
+    ds = load_dataset(SFT_DATASET, split=f"train[:{SFT_SLICE}]")
+
+print(f"Loaded {len(ds)} rows from {SFT_DATASET}. Columns: {ds.column_names}")
 print(f"\nFirst row:\n{ds[0]}")
 
 # %%
