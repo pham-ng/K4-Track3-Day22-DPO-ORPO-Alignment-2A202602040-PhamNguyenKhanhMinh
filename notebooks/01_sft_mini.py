@@ -85,6 +85,15 @@ if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
     print("Set tokenizer.pad_token = eos_token")
 
+# Ensure chat_template is set
+if getattr(tokenizer, "chat_template", None) is None:
+    try:
+        from unsloth import get_chat_template
+        tokenizer = get_chat_template(tokenizer, chat_template="qwen-2.5")
+    except Exception:
+        tokenizer.chat_template = "{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{'<|im_start|>assistant\n'}}{% endif %}"
+    print("Set tokenizer.chat_template = qwen-2.5 (ChatML format)")
+
 # %%
 model = FastLanguageModel.get_peft_model(
     model,
